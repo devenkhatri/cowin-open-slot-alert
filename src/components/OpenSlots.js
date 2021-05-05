@@ -4,6 +4,8 @@ import { Spinner, Badge, Flex, Card, Box,Message,Heading, Button, Divider, Alert
 import Moment from 'react-moment';
 import moment from 'moment';
 import addNotification from 'react-push-notification';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OpenSlots = () => {
     const [slotData, setSlotData] = React.useState([])
@@ -12,6 +14,7 @@ const OpenSlots = () => {
     const INTERVAL_MS = 15 * 1000;
 
     const getLiveData = (fetchDate) => {
+        setLoaded(false)
         if(!fetchDate) fetchDate = moment().format('DD-MM-YYYY')
         const apiURL = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=772&date=' + fetchDate
         console.log(apiURL)
@@ -33,6 +36,7 @@ const OpenSlots = () => {
     }
 
     const showNotification = (slotname, date, min_age_limit, available_capacity) => {
+        toast("Slot available at - "+slotname);
         addNotification({
             title: slotname,
             message: 'Date='+date+", AgeLimit="+min_age_limit+"+, AvailableCount="+available_capacity,
@@ -51,12 +55,13 @@ const OpenSlots = () => {
 
     return (
         <div>
+            <ToastContainer position="top-center" pauseOnHover />
             <Heading as="h4">Please make sure to enable notification for this site to get the alert immediately when an open slot is available. <em>Choose 'Allow' from the popup which comes after clicking the below button</em></Heading>
-            <Button m={2} onClick={() => { showNotification('Test Notification', 'dd-mm-yyyy', '00', '999') }}>
+            <Button m={2} variant="outline" onClick={() => { showNotification('Test Notification', 'dd-mm-yyyy', '00', '999') }}>
                 Enable Notification
             </Button>
             <Divider />
-            <Message><Heading>Available Slots on CoWin Portal</Heading></Message>
+            <Box bg="secondary" color="white" p={3}><Heading>Available Slots on CoWin Portal</Heading></Box>
             {!loaded && <Spinner />}
             {/* {slotData &&
                 <Flex>
