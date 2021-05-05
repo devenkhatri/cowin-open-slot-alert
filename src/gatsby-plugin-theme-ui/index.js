@@ -42,4 +42,28 @@ export default {
     heading: 'inherit',
     monospace: 'Menlo, monospace',
   },
+  badges: {
+    success: {
+      color: 'white',
+      bg: 'green',
+    },
+    error: {
+      color: 'white',
+      bg: 'red',
+    },
+    secondary: {
+      color: 'white',
+      bg: 'secondary',
+    },
+    primary: {
+      color: 'white',
+      bg: 'primary',
+    },
+    outline: {
+      color: 'text',
+      bg: 'muted',
+      boxShadow: 'inset 0 0 0 1px',
+      borderRadius: '50%',
+    },
+  },
 };
