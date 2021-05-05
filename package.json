@@ -1,39 +1,77 @@
 {
-  "name": "test",
-  "version": "0.1.0",
+  "name": "cowin-alert",
+  "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.6",
-    "@testing-library/user-event": "^12.8.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-push-notification": "^1.3.0",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.1"
-  },
+  "description": "cowin-open-slot-alert",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Deven Goratela",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "start": "gatsby develop"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "impliedStrict": true,
+        "jsx": true
+      },
+      "ecmaVersion": 2019,
+      "sourceType": "module",
+      "useJSXTextNode": true
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx",
+            "md",
+            "mdx"
+          ]
+        }
+      },
+      "react": {
+        "version": "detect"
+      }
+    },
+    "plugins": [
+      "prettier"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "extends": [
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "prettier/prettier": "warn"
+    }
+  },
+  "dependencies": {
+    "gatsby": "^2.23.3",
+    "gatsby-plugin-disqus": "^1.1.4",
+    "gatsby-plugin-google-analytics": "^2.1.23",
+    "gatsby-plugin-manifest": "^2.4.11",
+    "gatsby-plugin-offline": "^4.4.0",
+    "gatsby-plugin-sitemap": "^2.2.21",
+    "gatsby-theme-chronoblog": "^0.26.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-push-notification": "^1.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.18.2"
+  },
+  "engines": {
+    "node": ">=12.21.0"
   }
 }
