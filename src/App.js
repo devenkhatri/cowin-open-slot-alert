@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import addNotification from 'react-push-notification';
+import SimpleNotification from "./SimpleNotification";
 
 const App = () => {
   const buttonClick = () => {
@@ -9,7 +10,7 @@ const App = () => {
       subtitle: 'This is a subtitle',
       message: 'This is a very long message',
       theme: 'red',
-      native: false // when using native, your OS will handle theming.
+      native: true // when using native, your OS will handle theming.
     });
   };
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <button onClick={buttonClick} className="button">
             Test Notification
           </button>
+          <SimpleNotification />
         </div>
       </header>
     </div>
