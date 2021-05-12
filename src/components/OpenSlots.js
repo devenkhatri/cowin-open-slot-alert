@@ -94,8 +94,6 @@ const OpenSlots = () => {
             } */}
             {slotData && slotData.map((slot, index) => {
                 return (
-                    <>
-                    {(_.find(slot.sessions, item => item.min_age_limit == 18) || []).length > 0 &&
                     <Card key={index} style={{ borderBottom: "1px solid", borderLeft: "1px solid" }}>
                         <Alert m={3} mx={0}>{slot.name} &nbsp;{slot.fee_type !== 'Free' && <Badge variant='secondary'>{slot.fee_type}</Badge>}</Alert>
                         {slot.sessions && slot.sessions.map((session, index) => {
@@ -112,8 +110,6 @@ const OpenSlots = () => {
                             )
                         })}
                     </Card>
-                    }
-                    </>
                 )
             })}
         </div>
