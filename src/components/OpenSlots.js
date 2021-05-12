@@ -8,16 +8,20 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import _ from 'lodash';
 
-const OpenSlots = () => {
+const OpenSlots = (props) => {
     const [slotData, setSlotData] = React.useState([])
     const [loaded, setLoaded] = React.useState(false)
+
+    const districtID = props.districtID || 772
+    let apiURLTemplate = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=' + districtID
+    if(props.pincode) apiURLTemplate = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByPin?pincode=' + props.pincode
 
     const INTERVAL_MS = 15 * 1000;
 
     const getLiveData = (fetchDate) => {
         setLoaded(false)
         if (!fetchDate) fetchDate = moment().format('DD-MM-YYYY')
-        const apiURL = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=772&date=' + fetchDate
+        const apiURL = apiURLTemplate + '&date=' + fetchDate
         console.log(apiURL)
         axios.get(apiURL)
             .then(function (response) {
@@ -77,7 +81,7 @@ const OpenSlots = () => {
                 Enable Notification
             </Button>
             <Divider />
-            <Box bg="secondary" color="white" p={3}><Heading>Available Slots on CoWin Portal for 18+ category</Heading></Box>
+            <Box bg="secondary" color="white" p={3}><Heading>Available Slots on CoWin Portal for 18+ category</Heading>{props.pincode?('(pincode='+props.pincode+')'):''}</Box>
             {!loaded && <Spinner />}
             {/* {slotData &&
                 <Flex>
@@ -98,7 +102,7 @@ const OpenSlots = () => {
                         <Alert m={3} mx={0}>{slot.name} &nbsp;{slot.fee_type !== 'Free' && <Badge variant='secondary'>{slot.fee_type}</Badge>}</Alert>
                         {slot.sessions && slot.sessions.map((session, index) => {
                             if (session.available_capacity > 0) showNotification(slot.name, session.date, session.min_age_limit, session.available_capacity)
-                            if (session.min_age_limit != 18) return <div/>
+                            if (session.min_age_limit != 18) return <div />
                             return (
                                 <Flex key={index}>
                                     <Text m={1}>{session.date}</Text>
