@@ -66,9 +66,9 @@ const OpenSlots = (props) => {
 
     React.useEffect(() => {
         //call the function every xx miliseconds
-        // setInterval(() => {
-        //     getLiveData()
-        // }, INTERVAL_MS);
+        setInterval(() => {
+            getLiveData()
+        }, INTERVAL_MS);
         getLiveData()
     }, [])
 
