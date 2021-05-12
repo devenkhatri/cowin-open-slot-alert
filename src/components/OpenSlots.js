@@ -42,6 +42,7 @@ const OpenSlots = (props) => {
 
     const showNotification = (slotname, date, min_age_limit, available_capacity) => {
         if (min_age_limit != 18) return;
+        toast.dismiss();
         toast("Slot available at - " + slotname);
         addNotification({
             title: slotname,
